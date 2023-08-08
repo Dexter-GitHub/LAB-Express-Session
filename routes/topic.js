@@ -28,6 +28,7 @@ router.get('/create', function (request, response) {
 });
 
 router.post('/create_process', function (request, response) {
+  /* 로그인 상태가 아니라면 홈으로 이동 */
   if (!auth.isOwner(request, response)) {
     response.redirect('/');
     return false;
@@ -41,6 +42,7 @@ router.post('/create_process', function (request, response) {
 });
 
 router.get('/update/:pageId', function (request, response) {
+  /* 로그인 상태가 아니라면 홈으로 이동 */
   if (!auth.isOwner(request, response)) {
     response.redirect('/');
     return false;
@@ -70,6 +72,7 @@ router.get('/update/:pageId', function (request, response) {
 });
 
 router.post('/update_process', function (request, response) {
+  /* 로그인 상태가 아니라면 홈으로 이동 */
   if (!auth.isOwner(request, response)) {
     response.redirect('/');
     return false;
@@ -86,6 +89,7 @@ router.post('/update_process', function (request, response) {
 });
 
 router.post('/delete_process', function (request, response) {
+  /* 로그인 상태가 아니라면 홈으로 이동 */
   if (!auth.isOwner(request, response)) {
     response.redirect('/');
     return false;
@@ -103,7 +107,8 @@ router.get('/:pageId', function (request, response, next) {
   fs.readFile(`data/${filteredId}`, 'utf8', function (err, description) {
     if (err) {
       next(err);
-    } else {
+    } 
+    else {
       var title = request.params.pageId;
       var sanitizedTitle = sanitizeHtml(title);
       var sanitizedDescription = sanitizeHtml(description, {
@@ -124,4 +129,5 @@ router.get('/:pageId', function (request, response, next) {
     }
   });
 });
+
 module.exports = router;

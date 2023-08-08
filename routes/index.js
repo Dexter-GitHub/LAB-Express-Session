@@ -3,7 +3,7 @@ var router = express.Router();
 var template = require('../lib/template.js');
 var auth = require('../lib/auth');
 
-router.get('/', function (request, response) {
+router.get('/', function (request, response) {   
   var fmsg = request.flash();
   var feedback = '';
   if(fmsg.success){
