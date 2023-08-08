@@ -3,10 +3,10 @@ var app = express();
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var compression = require('compression');
-var helmet = require('helmet')
+var helmet = require('helmet');
 app.use(helmet());
-var session = require('express-session')
-var FileStore = require('session-file-store')(session)
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
 var flash = require('connect-flash');
 
 app.use(express.static('public'));
@@ -19,7 +19,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
   store: new FileStore()
-}))
+}));
 app.use(flash());
 
 var passport = require('./lib/passport')(app);
