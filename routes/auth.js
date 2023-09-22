@@ -6,6 +6,7 @@ var sanitizeHtml = require('sanitize-html');
 var template = require('../lib/template.js');
 var shortid = require('shortid');
 var db = require('../lib/db');
+var bcrypt = require('bcrypt');
 
 module.exports = function (passport) {
   router.get('/login', function (request, response) {
@@ -49,10 +50,10 @@ module.exports = function (passport) {
     var html = template.HTML(title, list, `
       <div style="color:red;">${feedback}</div>
       <form action="/auth/register_process" method="post">
-        <p><input type="text" name="email" placeholder="email" value="dexter@gmail.com"></p>
-        <p><input type="password" name="pwd" placeholder="password" value="1111"></p>
-        <p><input type="password" name="pwd2" placeholder="password" value="1111"></p>
-        <p><input type="text" name="displayName" placeholder="display name" value="Dexter"></p>
+        <p><input type="text" name="email" placeholder="email"></p>
+        <p><input type="password" name="pwd" placeholder="password"></p>
+        <p><input type="password" name="pwd2" placeholder="password"></p>
+        <p><input type="text" name="displayName" placeholder="display name"></p>
         <p>
           <input type="submit" value="register">
         </p>
@@ -73,17 +74,21 @@ module.exports = function (passport) {
       response.redirect('/auth/register');
     }
     else {
-      var user = {
-        id : shortid.generate(),
-        email : email,
-        password : pwd,
-        displayName : displayName
-      };
-
-      db.get('users').push(user).write();      
-      request.login(user, function(err) {
-        return response.redirect('/');
-      })    
+      bcrypt.hash(pwd, 10, function(err, hash) {
+        var user = {
+          id : shortid.generate(),
+          email : email,
+          password : hash,
+          displayName : displayName
+        };  
+        
+        db.get('users').push(user).write();      
+        request.login(user, function(err) {
+          return response.redirect('/');
+        });
+      });
+      
+         
     }    
   });
   
