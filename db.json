@@ -5,6 +5,26 @@
       "email": "dexter@gmail.com",
       "password": "1111",
       "displayName": "Dexter"
+    },
+    {
+      "id": "ohk3u1b8o",
+      "email": "dexter888@gmail.com",
+      "password": "1111",
+      "displayName": "Dexter8"
+    }
+  ],
+  "topics": [
+    {
+      "id": "ZnI2kndH5",
+      "title": "Multi user",
+      "description": "...",
+      "user_id": "kmT2_B-q6"
+    },
+    {
+      "id": "6Xun45lRe",
+      "title": "OAuth",
+      "description": "Oauth is ...",
+      "user_id": "ohk3u1b8o"
     }
   ]
 }
