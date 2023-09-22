@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var template = require('../lib/template.js');
+var template = require('../lib/template');
 var auth = require('../lib/auth');
 
 router.get('/', function (request, response) {   
