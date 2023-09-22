@@ -4,12 +4,8 @@ var path = require('path');
 var fs = require('fs');
 var sanitizeHtml = require('sanitize-html');
 var template = require('../lib/template.js');
-
-const low = require('lowdb');
-const FileSync  = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('db.json');
-const db = low(adapter);
-// db.defaults({users:[]}).write();
+var shortid = require('shortid');
+var db = require('../lib/db');
 
 module.exports = function (passport) {
   router.get('/login', function (request, response) {
@@ -65,20 +61,31 @@ module.exports = function (passport) {
     response.send(html);
   });
 
-  // router.post('/register_process', function(request, response) {
-  //   var post = request.body;
-  //   var email = post.email;
-  //   var pwd = post.pwd;
-  //   var pwd2 = post.pwd2;
-  //   var displayName = post.displayName;
+  router.post('/register_process', function(request, response) {
+    var post = request.body;
+    var email = post.email;
+    var pwd = post.pwd;
+    var pwd2 = post.pwd2;
+    var displayName = post.displayName;
 
-  //   db.get('users').push({
-  //     email:email,
-  //     password:pwd,
-  //     displayName:displayName
-  //   }).write();
-  //   response.redirect('/');
-  // });
+    if (pwd !== pwd2) {
+      request.flash('error', 'Password must same!');
+      response.redirect('/auth/register');
+    }
+    else {
+      var user = {
+        id : shortid.generate(),
+        email : email,
+        password : pwd,
+        displayName : displayName
+      };
+
+      db.get('users').push(user).write();      
+      request.login(user, function(err) {
+        return response.redirect('/');
+      })    
+    }    
+  });
   
   router.get('/logout', function (request, response) {
     request.logOut();
