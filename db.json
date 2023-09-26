@@ -1,19 +1,11 @@
 {
   "users": [
     {
-      "id": "t2CMjaNFY",
-      "email": "mystyle1057@gmail.com",
-      "password": "$2b$10$YdUgoC0blZb9sFHrwaQUHu0ieyBToElm9.g6nAP7QwgaPqsP5qdVq",
-      "displayName": "Dexter",
-      "googleId": "118300172166406580786"
+      "id": "E2emkrkND",
+      "email": "dexter@gmail.com",
+      "password": "$2b$10$KIeoHm6QhFsxyA8hBvpYgeCJ/k9vWSg8K48tfkzjimDOmYD5DeYtS",
+      "displayName": "Dexter"
     }
   ],
-  "topics": [
-    {
-      "id": "QJ07kTebF",
-      "title": "google",
-      "description": "google ...",
-      "user_id": "t2CMjaNFY"
-    }
-  ]
+  "topics": []
 }

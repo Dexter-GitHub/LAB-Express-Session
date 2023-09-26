@@ -75,20 +75,26 @@ module.exports = function (passport) {
     }
     else {
       bcrypt.hash(pwd, 10, function(err, hash) {
-        var user = {
-          id : shortid.generate(),
-          email : email,
-          password : hash,
-          displayName : displayName
-        };  
-        
-        db.get('users').push(user).write();      
+        var puser = db.get('users').find({email:email}).value();
+        if (puser) {
+          puser.password = hash;
+          puser.displayName = displayName;
+          db.get('users').find({id:puser.id}).assign(puser).write();
+        }
+        else {
+          var user = {
+            id : shortid.generate(),
+            email : email,
+            password : hash,
+            displayName : displayName
+          };          
+          db.get('users').push(user).write();
+        }
+
         request.login(user, function(err) {
           return response.redirect('/');
         });
-      });
-      
-         
+      });              
     }    
   });
   
