@@ -1,36 +1,19 @@
 {
   "users": [
     {
-      "id": "kmT2_B-q6",
-      "email": "dexter@gmail.com",
-      "password": "1111",
-      "displayName": "Dexter"
-    },
-    {
-      "id": "ohk3u1b8o",
-      "email": "dexter888@gmail.com",
-      "password": "1111",
-      "displayName": "Dexter8"
-    },
-    {
-      "id": "07HQ3sPhX",
-      "email": "sorialgi@gmail.com",
-      "password": "$2b$10$vIJgkG.iClNlyfWvk.V.Qep/1Z9AVHf.wfdFRlfNabq.ckjt5/d1q",
-      "displayName": "sorialgi"
+      "id": "t2CMjaNFY",
+      "email": "mystyle1057@gmail.com",
+      "password": "$2b$10$YdUgoC0blZb9sFHrwaQUHu0ieyBToElm9.g6nAP7QwgaPqsP5qdVq",
+      "displayName": "Dexter",
+      "googleId": "118300172166406580786"
     }
   ],
   "topics": [
     {
-      "id": "ZnI2kndH5",
-      "title": "Multi user",
-      "description": "...",
-      "user_id": "kmT2_B-q6"
-    },
-    {
-      "id": "x2OtI5Re1",
-      "title": "Passport.js",
-      "description": "Passport ...",
-      "user_id": "ohk3u1b8o"
+      "id": "QJ07kTebF",
+      "title": "google",
+      "description": "google ...",
+      "user_id": "t2CMjaNFY"
     }
   ]
 }
